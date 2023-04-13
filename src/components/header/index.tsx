@@ -7,20 +7,23 @@ import {
     SearchInputContainer,
     SearchInput,
     SearchButton,
-    HeaderButton } from "./style";
+    HeaderButton } from "./styles";
 import HamburguerIcon from '../../assets/hamburger.png';
 import Logo from '../../assets/YouTube-Logo.png';
 import SearchIcon from '../../assets/search.png';
 import MicIcon from '../../assets/microfone-gravador.png'
 import VideoIcon from '../../assets/video.png'
 import SinoIcon from '../../assets/sino.png'
+import {useMenu } from "../../contexts/context";
 
 function Header(){
+    let {Menu, mudaMenu} = useMenu();
+
     return (
         <Container>
             <LogoContainer>
-                <ButtonContainer margin='0 10px 0 0' >
-                    <ButtonIcon  alt ="" src={HamburguerIcon}/>
+                <ButtonContainer margin='0 10px 0 0' onClick={() => mudaMenu(!Menu) } >
+                    <ButtonIcon  alt ="" src={HamburguerIcon} />
                 </ButtonContainer>
                 <img style={{cursor: 'pointer', width: '100px'}} 
                 alt ='Página inicial do YouTube'

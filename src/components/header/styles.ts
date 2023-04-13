@@ -17,7 +17,7 @@ export const LogoContainer = styled.div`
  align-items: center;
 `;
 
-export const ButtonContainer = styled.div <{margin?: string}>`
+export const ButtonContainer = styled.div  <{margin?: string}>`
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -30,6 +30,7 @@ export const ButtonContainer = styled.div <{margin?: string}>`
     :hover{
         background-color: #f2f2f2;
     }
+
 `;
 
 export const ButtonIcon = styled.img`
