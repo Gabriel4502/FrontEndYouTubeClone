@@ -17,12 +17,12 @@ import SinoIcon from '../../assets/sino.png'
 import {useMenu } from "../../contexts/context";
 
 function Header(){
-    let {Menu, mudaMenu} = useMenu();
+    let {openMenu, mudaMenu} = useMenu();
 
     return (
         <Container>
             <LogoContainer>
-                <ButtonContainer margin='0 10px 0 0' onClick={() => mudaMenu(!Menu) } >
+                <ButtonContainer margin='0 10px 0 0' onClick={() => mudaMenu(!openMenu) } >
                     <ButtonIcon  alt ="" src={HamburguerIcon} />
                 </ButtonContainer>
                 <img style={{cursor: 'pointer', width: '100px'}} 

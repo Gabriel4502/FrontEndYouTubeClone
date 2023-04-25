@@ -1,7 +1,7 @@
 import {createContext, useState, useContext} from 'react';
 
 interface MenuContextProps{
-    Menu: boolean;
+    openMenu: boolean;
     mudaMenu:(estado: boolean) => void;
 }
 
@@ -20,7 +20,7 @@ export const MenuProvider = ({children}: MenuProviderprops) => {
 
     return (
         <MenuContext.Provider value= {{
-           Menu: menu,
+           openMenu: menu,
            mudaMenu
         }}>
             {children}
