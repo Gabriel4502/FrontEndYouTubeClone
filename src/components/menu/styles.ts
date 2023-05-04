@@ -2,20 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.div <{onClick?: (e: Event) => void; openMenu:boolean }> `
 width: ${({openMenu}) => openMenu? '250px': '100px' } ;
-height: 100vh;
+height: calc(100vh - 55px);
 box-sizing: border-box;
-padding: 65px 10px 10px 10px;
+padding: 10px 10px 10px 10px;
 display: flex;
+position: sticky;
+top: 55px;
 align-items: center;
 flex-direction: column;
 overflow-y: auto;
 `
 export const MenuItem = styled.div <{openMenu: boolean}>`
-width: 100%;
+width: 98%;
 min-height: ${({openMenu}) => openMenu? '40px' :'70px'};
 border-radius: 10px;
 cursor: pointer;
-padding: 2px 17px;
+padding: 2px 15px;
 box-sizing: border-box;
 display: flex;
 flex-direction: ${({openMenu}) => openMenu? 'row': 'column' };

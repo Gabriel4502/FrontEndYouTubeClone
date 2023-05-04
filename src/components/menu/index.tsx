@@ -1,6 +1,7 @@
 
 import { useContext} from 'react';
 import { MenuContext } from '../../contexts/context';
+import { useNavigate } from 'react-router-dom';
 import {
     ButtonIcon,
   Container, Divisoria, Linha, Links, MenuItem, Copyright, LoginButton
@@ -37,42 +38,51 @@ const icones = [
     Adicionar, YtPremium, YtKids, YtMusic, Config, Denuncias, Ajuda,
     Feedback,
 ] ;
-const itemsOpen= ['Inicio','Shorts','Inscrições','Biblioteca','Histórico', 'Em alta', 
-                    'Shopping','Música', 'Filmes e programas', 'Ao Vivo', 'Jogos', 'Notícias', 'Esportes',
-                    'Aprender', 'Procurar canais', 'YouTube Premium', 'YouTube Music', 'YouTube Kids',
-                    'Configurações', 'Histórico de denúncias', 'Ajuda', 'Enviar Feedback'];
+const itemsOpen= [{nome: 'Inicio', link:'/'},{nome: 'Shorts', link:'/'},{nome:'Inscrições', link:'/'},
+                  {nome:'Biblioteca', link:'/library'},{nome:'Histórico', link:'/history'}, {nome:'Em alta',link:'/'}, 
+                  {nome: 'SHopping', link:'/'},{nome: 'Música', link:'/'}, {nome: 'FIlmes e programas', link:'/'},
+                  {nome: 'Ao Vivo', link:'/'}, {nome: 'Jogos', link:'/'}, {nome: 'Notícias', link:'/'},
+                  {nome: 'Esportes', link:'/'},{nome: 'Aprender', link:'/'}, {nome: 'Procurar canais', link:'/'},
+                  {nome: 'YouTube Premium', link:'/'},{nome: 'YouTube Music', link:'/'}, {nome: 'YouTube Kids', link:'/'},
+                  {nome: 'Configurações', link:'/'}, {nome: 'Histórico de Denúncias', link:'/'}, 
+                  {nome: 'Ajuda', link:'/'}, {nome: 'Enviar Feedback', link:'/'}];
 
 const itemsClosed = ['Inicio','Shorts','inscrições','Biblioteca','Histórico'] ;
 let listaItemsOpen: React.ReactNode;
 let listaItemsClosed: React.ReactNode;
-function controlador (openMenu: boolean) {
+function Controlador (openMenu: boolean) {
+    const navigate = useNavigate();
     if(openMenu){
         listaItemsOpen = itemsOpen.map(
             (valor, i)=> <>
-                <MenuItem openMenu = {openMenu} >
-                <ButtonIcon alt='' src={icones[i]} /> <span>{valor}</span>
+                <MenuItem openMenu = {openMenu} onClick={()=> navigate(itemsOpen[i].link)} >
+                <ButtonIcon alt='' src={icones[i]} /> <span>{valor.nome}</span>
                 </MenuItem>
                 {i===2? <Divisoria> <Linha></Linha> </Divisoria> :''} 
                 {i===4? <div>
-                            <Divisoria> 
-                                <Linha></Linha> 
-                            </Divisoria> 
-                                <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}} >
-                                    <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'600'}} >
-                                        Faça login para curtir vídeos, comentar e se inscrever
-                                    </span>
-                                 </div>
-                            <LoginButton>
-                                <ButtonIcon alt='' src={Perfil}/>
-                                <span>Fazer Login</span>
-                            </LoginButton>
-                            <Divisoria><Linha></Linha></Divisoria>
-                            <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}} >Explorar</span>
-                 </div> : ''}
+                                <Divisoria> 
+                                    <Linha></Linha> 
+                                </Divisoria> 
+                                    <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}} >
+                                        <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'600'}} >
+                                            Faça login para curtir vídeos, comentar e se inscrever
+                                        </span>
+                                    </div>
+                                <LoginButton>
+                                    <ButtonIcon alt='' src={Perfil}/>
+                                    <span>Fazer Login</span>
+                                </LoginButton>
+                                <Divisoria><Linha></Linha></Divisoria>
+                                <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}}>
+                                    Explorar
+                                </span>
+                     </div> : ''}
                 
                 {i===14? <><Divisoria><Linha></Linha></Divisoria>
-                              <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}} >
-                                 <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}} >Mais do YouTube</span>
+                              <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}}>
+                                 <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}}>
+                                    Mais do YouTube
+                                 </span>
                               </div> 
                           </> :''}
                 {i===13? <Divisoria><Linha></Linha></Divisoria> :''} 
@@ -123,7 +133,7 @@ function controlador (openMenu: boolean) {
 
 function Menu(){
     const {openMenu} = useContext(MenuContext);
-    controlador(openMenu);
+    Controlador(openMenu);
     
     return(
         
