@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { MenuProvider } from './contexts/context';
+import { UserStorage } from './contexts/userContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <MenuProvider>
-
-    <App />
-  </MenuProvider>
-    
-    
-    
+    <UserStorage>
+      <MenuProvider>
+        <App />
+      </MenuProvider>
+    </UserStorage>
   </React.StrictMode>
 );
 

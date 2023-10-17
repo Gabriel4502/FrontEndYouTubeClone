@@ -1,18 +1,25 @@
+import { UserContext } from "../../contexts/userContext";
+import {useContext} from "react";
 import { ChannelImage, Container, ImageBanner, TextCard, TextContainer, Title, TitleContainer } from "./styles";
 
-function VideoCoponent(){
+
+
+function VideoComponent({vid}: any){
+
+    const {user} = useContext(UserContext);
+    const imgChannel:string = user.nome; 
 
     return(
         <Container>
-            <ImageBanner src="https://lastfm.freetls.fastly.net/i/u/ar0/07690c94c7d24e408e793f42158fb885.jpg" />
+            <ImageBanner src={vid.image || 'https://i.redd.it/4ptb36v17sc81.jpg'}/>
             <TitleContainer>
                 <ChannelImage>
-                    AA
+                    {/* {imgChannel.substring(0,1).toUpperCase()} */}CC
                 </ChannelImage>
                 <TextContainer>
-                    <Title>Necrophagist - Culinary Hyperversity</Title>
-                    <TextCard>Necrophagist</TextCard>
-                    <TextCard>840 tri de visualizações - há 280 anos</TextCard>
+                    <Title>{vid.title}</Title>
+                    <TextCard style={{cursor:'pointer'}} >{vid.channel}</TextCard>
+                    <TextCard>{vid.views} de visualizações - há {vid.tempo}</TextCard>
                 </TextContainer>
             </TitleContainer>
         </Container>
@@ -20,4 +27,4 @@ function VideoCoponent(){
     )
 }
 
-export default VideoCoponent;
+export default VideoComponent;

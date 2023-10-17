@@ -5,8 +5,9 @@ export const Container = styled.div `
 `;
 
 export const ImageBanner = styled.img`
+cursor: pointer;
 width: 100%;
-height: 210px;
+height: 250px;
 border-radius: 12px;
 `;
 
@@ -17,6 +18,7 @@ display: flex;
 
 export const ChannelImage = styled.div`
 background-color: beige;
+cursor: pointer;
 width: 40px;
 height: 40px;
 display: flex;
@@ -32,6 +34,7 @@ flex-direction: column;
 `
 
 export const Title = styled.span`
+cursor: pointer;
 font-weight: 600;
 color: #0f0f0f;
 `

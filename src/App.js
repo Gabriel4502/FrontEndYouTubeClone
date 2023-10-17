@@ -4,25 +4,25 @@ import Menu from "./components/menu";
 import Home from "./pages/home";
 import Library from "./pages/library";
 import History from "./pages/history";
+import Login from "./pages/login/login";
+import Login2 from "./pages/login/login2";
+import NameSurname from "./pages/register/nameSurname";
+import EmailRegister from "./pages/register/emailRegister";
 
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter id="teste">
       <div className="App">
-      <Header/>
-      <div style ={{width: '100%', display: 'flex'}} >
-        <Menu>
-
-        </Menu>
-        <div style={{width: '100%'}}>
             <Routes>
                 <Route path={'/'} element={<Home/>} />
                 <Route path={'/library'} element={<Library/>} />
                 <Route path={'/history'} element={<History/>} />
+                <Route path={'/login'} element={<Login/>} />
+                <Route path={'/login2'} element={<Login2/>} />
+                <Route path={'/sign-up/nameSurname'} element={<NameSurname/>} />
+                <Route path={'/sign-up/emailRegister'} element={<EmailRegister/>} />
             </Routes>
-        </div>
-      </div>
     </div>
     </BrowserRouter>
   );
