@@ -1,13 +1,13 @@
-import { BotaoCriar, CustomInput, LoginContainer, LogoIcon, PageContainer } from "../login/styles";
-import google from '../../assets/google.png';
+import { BotaoCriar, CustomInput, LoginContainer, LogoIcon, PageContainer } from "../../login/styles";
+import google from '../../../assets/google.png';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/userContext";
-function NameSurname(){
-
+import { UserContext } from "../../../contexts/userContext";
+import name from "./nameSurname";
+function EmailRegister(){
     const navigate = useNavigate();
-    const {name, setName, surname, setSurname, password, setPassword} = useContext(UserContext);
-
+    const {register, name, password, setPassword} = useContext(UserContext);
+    const [email,setEmail] = useState('');
 
     return (
 
@@ -16,27 +16,29 @@ function NameSurname(){
                 <LoginContainer>
                     <LogoIcon alt='' src={google}/>
                     <div style={{width:'368px', height:'47.98', display:'flex', justifyContent:'center', alignItems:'center', fontSize:'24px'}}>
-                       Criar uma Conta do Google
+                       Usar seu e-mail atual
                     </div>
                     <div style={{marginBottom:'50px'}}>
-                        Insira seu nome
+                     Digite o endereço de e-mail que você quer usar na sua Conta do Google
                     </div>
                     <div style={{width:'368px',padding:'8px 0 0', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                    <CustomInput style={{marginBottom:'20px'}} id='name' placeholder='Nome' type='string' onChange={(e) => setName(e.target.value+` ${surname}`)} ></CustomInput>
-                    <CustomInput id='name' placeholder='Sobreome(Opicional)' type='string' onChange={(e) => setSurname(e.target.value)} ></CustomInput>
+                    <CustomInput style={{marginBottom:'20px'}} id='e-mail' placeholder='Endereço de e-mail' type='e-mail' onChange={(e) => setEmail(e.target.value)} ></CustomInput>
+                    <CustomInput style={{marginBottom:'20px'}} id='password' placeholder='Digite sua senha' type='password' onChange={(e) => setPassword(e.target.value)} ></CustomInput>
+                    
                     <div style={{width:'368px',display:'flex', justifyContent:'flex-start'}}>
                         <a style={{cursor:'pointer', color:'rgb(26 115 232)', fontWeight:'600'}}>
-                           
+                           Criar um endereço do Gmail
                         </a>
                         </div>
                     </div>
-                    <div style={{margin:'50px 0 30px 0', fontSize:'14px', }} >Não está no seu computador? Use o modo visitante para fazer login com privacidade.
-                        <a style={{cursor:'pointer', fontWeight:'600', color:'rgb(26 115 232)'}}>Saiba mais</a>
-                    </div>
                     <div style={{width: '400px', display:'flex', margin:'0 0 50px 0', justifyContent:'flex-end'}} >
                         <button style={{width:'102.398px', height:'38px', fontSize:'14px', borderRadius:'5px', 
-                                        backgroundColor:'rgb(26 115 232)', color:'white', border:'none', cursor:'pointer'}} 
-                                        onClick={name.length===0? ()=>alert(`Insira seu nome`): ()=>navigate('/sign-up/emailRegister') }>Próxima
+                                        backgroundColor:'rgb(26 115 232)', color:'white', border:'none', cursor:'pointer'}}
+                                        onClick={email.length===0? ()=>alert(`Insira seu e-mail`):
+                                        ()=>{
+                                            register(name, email, password)
+                                            navigate('/login')
+                                        } }>Próxima
                         </button>
                     </div>
                 </LoginContainer>
@@ -51,4 +53,4 @@ function NameSurname(){
 
 }
 
-export default NameSurname;
+export default EmailRegister;

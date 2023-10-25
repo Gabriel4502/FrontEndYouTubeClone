@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect} from 'react';
 import { MenuContext } from '../../contexts/context';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import {
     ButtonIcon,
-  Container, Divisoria, Linha, Links, MenuItem, Copyright, LoginButton, SobreItem
+  Container,Linha, Links, MenuItem, Copyright, LoginButton, SobreItem
 } from "./styles";
 import SinoIcon from '../../assets/sino.png'
 import Home from '../../assets/botao-de-inicio.png'
@@ -37,7 +37,6 @@ import DownArrow from '../../assets/downArrow.png'
 import ArrayModFunction from '../menu/inferfaceArrayMod'
 import Like from '../..//assets/like.png'
 import PlayList from '../..//assets/playlist.png'
-import { ButtonContainer } from '../header/styles';
 import { UserContext } from '../../contexts/userContext';
 
 const icones = [
@@ -50,60 +49,6 @@ const icones = [
 
 let listaItemsOpen: React.ReactNode;
 let listaItemsClosed: React.ReactNode;
-// function Controlador (openMenu: boolean) {
-//     const navigate = useNavigate();
-    
-
-//     if(openMenu){
-//         listaItemsOpen = itemsOpen.map(
-//             (valor, i)=> <>
-//                 <MenuItem openMenu = {openMenu} onClick={()=> navigate(itemsOpen[i].link)} >
-//                 <ButtonIcon alt='' src={icones[i]} /> <span>{valor.nome}</span>
-//                 </MenuItem>
-//                 {i===2? <Divisoria> <Linha></Linha> </Divisoria> :''} 
-//                 {i===4? <div>
-//                                 <Divisoria> 
-//                                     <Linha></Linha> 
-//                                 </Divisoria> 
-//                                     <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}} >
-//                                         <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'600'}} >
-//                                             Faça login para curtir vídeos, comentar e se inscrever
-//                                         </span>
-//                                     </div>
-//                                 <LoginButton onClick={()=> navigate('/login')}>
-//                                     <ButtonIcon alt='' src={Perfil} />
-//                                     <span>Fazer Login</span>
-//                                 </LoginButton>
-//                                 <Divisoria><Linha></Linha></Divisoria>
-//                                 <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}}>
-//                                     Explorar
-//                                 </span>
-//                      </div> : ''}
-                
-//                 {i===14? <><Divisoria><Linha></Linha></Divisoria>
-//                               <div style={{ width:'100%', display:'flex', justifyContent:'flex-start'}}>
-//                                  <span style={{padding:'6px 12px 4px', fontSize:"16px", fontWeight:'400'}}>
-//                                     Mais do YouTube
-//                                  </span>
-//                               </div> 
-//                           </> :''}
-//                 {i===13? <Divisoria><Linha></Linha></Divisoria> :''} 
-//                 {i===18? <Divisoria><Linha></Linha></Divisoria> :''} 
-//                 {i===21?  <div> 
-//                     <Divisoria><Linha></Linha></Divisoria>
-//                     <Links> 
-//                         <a>Sobre</a> <a>Imprensa</a> <a>Direitos autorais</a> <a>Entre em contato</a> 
-//                         <a>Criadores de conteúdo</a> <a>Publicidade</a> <a>Desenvolvedores</a> 
-//                     </Links>
-//                     <Links> <a>Termos</a> <a>Privacidade</a> <a>Política e segurança</a> 
-//                     <a>Como funciona o YouTube</a> <a>Testar os novos recursos</a> 
-//                      </Links>  <Copyright>© 2023 Google LLC</Copyright>
-//                     </div> :''}
-//                 </>
-//         )
-//     } 
-// }
-
 
 export function Menu(){
     const {openMenu, mudaMenu} = useContext(MenuContext);
@@ -181,7 +126,7 @@ export function Menu(){
                     } ];
                     
                     if(login===true){
-                        itemsOpen.splice(23,0, {nome:'YouTube Studio', elemento2:' ', link:'/studio', acao:()=>{navigate(Studio)}, icone: Studio},);
+                        itemsOpen.splice(23,0, {nome:'YouTube Studio', elemento2:' ', link:'/studio', acao:()=>{navigate('/upload/videosUpload')}, icone: Studio},);
                         itemsOpen.splice(21,1);
                     } 
                     if(menuExtraContent){
@@ -196,18 +141,17 @@ export function Menu(){
                         itemsOpen.splice(14,0, {nome:'Canal3', elemento2:' ', link:'/history', acao:()=>{}, icone: Perfil},)
                     }
                     
-    const location = useLocation();
     const [width, setWidth] = useState(window.innerWidth);
     useEffect(()=>{
         const handleResizeWindow= () => setWidth(window.innerWidth);
-        
         window.addEventListener("resize", handleResizeWindow);
         // window.removeEventListener("Resize", handleResizeWindow);
+        
     });
 
         return(
 
-            <Container openMenu={openMenu}>
+            <Container id='MenuContainer' openMenu={openMenu}>
                 <>
                 {width>791? itemsClosed.map(
         (valor, i)=><MenuItem openMenu = {openMenu} >

@@ -165,9 +165,14 @@ function Header(){
                      {createVid?  
                             <Container id='createVideoMenu' 
                             style={{position:'fixed', width:'206px', padding:'8px 0', display:'block',borderRadius:' 10px 10px 10px 10px', top:'50px' ,
-                             left:'calc(100vw - 320px)', zIndex:'15', height:'96px', backgroundColor:'#747474'}}>
-                                <Container id='VideoMenuItem'> <ButtonIcon style={{marginRight:'10px'}} alt='' src={video} /> Enviar Video</Container>
-                                <Container id='VideoMenuItem'> <ButtonIcon style={{marginRight:'10px'}} alt='' src={Broadcast} /> Transmitir ao vivo</Container>
+                             left:'calc(100vw - 320px)', zIndex:'15', height:'96px', backgroundColor:'#656565'}}>
+                                <Container id='VideoMenuItem' onClick={()=>navigate('/channel/Content')} >
+                                    <ButtonIcon style={{marginRight:'10px'}} alt='' src={video} /> Enviar Video
+                                </Container>
+                                <Container id='VideoMenuItem' onClick={()=>navigate('/channel/Broadcast')} >
+                                    <ButtonIcon style={{marginRight:'10px'}} alt='' src={Broadcast} />
+                                    Transmitir ao vivo
+                                </Container>
                             </Container>
 
 

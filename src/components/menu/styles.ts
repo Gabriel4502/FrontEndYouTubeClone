@@ -4,14 +4,12 @@ import { useContext } from 'react';
 
 export const Container = styled.div <{onClick?: (e: Event) => void; openMenu:boolean;}> `
 width: ${({openMenu}) => openMenu? '250px': '100px' } ;
-  @media (max-width:1312px){
-    width: 100px ;
-  }
+
   @media (max-width:791px){
     display: ${({openMenu}) => openMenu? 'flex' : 'none' } ;
     width: 1px;
   }
-
+  overflow-x: hidden;
   
 
 height: calc(100vh - 55px);

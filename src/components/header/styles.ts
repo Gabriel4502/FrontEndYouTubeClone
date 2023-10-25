@@ -13,7 +13,7 @@ export const Container = styled.header`
 
 
     #VideoMenuItem{
-        background-color: #747474;
+        background-color: #656565;
         width: 206.33px;
         justify-content: flex-start;
         height: 40px;
@@ -53,7 +53,7 @@ export const ButtonContainer = styled.div  <{margin?: string, active?:boolean}>`
     align-items: center;
     cursor: pointer;
     :hover{
-        background-color: #f2f2f2;
+        background-color: #f1f1f1;
     }
 
 `;

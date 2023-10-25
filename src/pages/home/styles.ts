@@ -6,10 +6,7 @@ export const MainContainer = styled.div <{openMenu:boolean}> `
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    @media(max-width:1312px){
-        
-
-    }    
+   
 
 `
 
@@ -19,23 +16,27 @@ export const Container = styled.div<{openMenu:boolean}>`
     flex-wrap: wrap;
     
 `
+
 export const HomeContent = styled.div<{openMenu:boolean}>`
-    width: ${({openMenu}) => openMenu? '79%': '85%' } ;
+    width: calc( 100vw -  ${({openMenu}) =>openMenu?'290px': '130px'});
+    @media (max-width: 791px) {
+        width: 90%;
+    }
+    @media (max-width: 409px){
+        width: 82%;
+    }
     display: flex;
     justify-content: center;
     margin-left:20px;
+    flex-direction: column;
     flex-wrap: wrap;
-    @media(max-width:1097px){
-        width:79%;
-
-    }    
+    
     
 `
 
 export const VideoContainer = styled.div<{openMenu:boolean}>`
-    max-width: 100%;
+    width: 100%;
     max-height: 1818px;
-    min-width:99%;
     padding:20px 0px;
     box-sizing:border-box;
     justify-content:center;
@@ -57,11 +58,8 @@ export const VideoContainer = styled.div<{openMenu:boolean}>`
 
 export const Tags = styled.div <{openMenu:boolean}>`
 
-    @media(max-width:1312px){
-        
-
-    }    
-
+   
+    transition: 0.3s;
     width: 100%;
     height: 56px;
     background-color: white;
@@ -69,13 +67,16 @@ export const Tags = styled.div <{openMenu:boolean}>`
     align-items: center;
     flex-direction: row;
     position: sticky;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
     top: 55px;
     z-index: 14!important;
-    ::-webkit-overflow-scrolling{
-        
-    }
+    ::-webkit-scrollbar-thumb {
+ display: none;
+}
 `
 
 export const TagItem = styled.div `
@@ -103,5 +104,42 @@ align-items: center;
     background-color: #f1f1f1;
     transition: 0.15s linear;
  }    
+
+`
+ export const Right= styled.button<{}>`
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: transparent;
+        border-radius: 50%;
+        :hover{
+            background-color: darkgrey;
+            transition: 0.3s;
+        }
+ `
+
+export const Left= styled.button<{}>`
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        :hover{
+            background-color: darkgrey;
+            transition: 0.3s;
+        }
+
+`
+
+export const TagWrapper = styled.div <{}> `
+     width: 100%;
+     background-color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    position: sticky;
+    z-index: 14!important;
+    top: 5.7%;
 
 `

@@ -6,8 +6,10 @@ import Library from "./pages/library";
 import History from "./pages/history";
 import Login from "./pages/login/login";
 import Login2 from "./pages/login/login2";
-import NameSurname from "./pages/register/nameSurname";
-import EmailRegister from "./pages/register/emailRegister";
+import NameSurname from "./pages/register/emailRegister/nameSurname";
+import EmailRegister from "./pages/register/emailRegister/emailRegister";
+import VideosUpload from "./pages/YouTubeStudio/ChannelContent";
+import LivePage from "./pages/YouTubeStudio/LivePage/livePage";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
                 <Route path={'/login2'} element={<Login2/>} />
                 <Route path={'/sign-up/nameSurname'} element={<NameSurname/>} />
                 <Route path={'/sign-up/emailRegister'} element={<EmailRegister/>} />
+                <Route path={'/channel/Content'} element={<VideosUpload/>} />
+                <Route path={'/channel/live'} element={<LivePage/>} />
             </Routes>
     </div>
     </BrowserRouter>

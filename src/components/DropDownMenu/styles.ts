@@ -1,27 +1,5 @@
 import styled from "styled-components"
 
-export const MenuUserContent = styled.div`
-        width: 300px;
-        height:96px;
-        padding: 16px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        
-        .userInfo{
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-            z-index: 15;
-            a{
-                cursor: pointer;
-                color: rgb(62, 163, 210);
-                font-size:0.95rem;
-                font-weight:400;
-            }
-        }
-   
-`
 
 export const DropDownMenu = styled.div <{active:boolean}> `
     width: 300px;
@@ -62,6 +40,30 @@ export const DropDownMenu = styled.div <{active:boolean}> `
     left: calc(100vw - 390px);
     background-color: #f1f1f1;
     
+`
+
+
+export const MenuUserContent = styled.div`
+        width: 300px;
+        height:96px;
+        padding: 16px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        
+        .userInfo{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            z-index: 15;
+            a{
+                cursor: pointer;
+                color: rgb(62, 163, 210);
+                font-size:0.95rem;
+                font-weight:400;
+            }
+        }
+   
 `
 
 
