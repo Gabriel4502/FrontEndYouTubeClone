@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import api from "../api";
 
 export const UserContext = createContext({} as any);

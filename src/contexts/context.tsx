@@ -1,10 +1,12 @@
-import {createContext, useState, useContext} from 'react';
+import {createContext, useState, useContext, Dispatch, SetStateAction} from 'react';
 
 interface MenuContextProps{
     openMenu: boolean;
     mudaMenu:(estado: boolean) => void;
     active?: boolean;
     mudaDropOpen:(estado: boolean) => void;
+    overlay: boolean;
+    setOverlay: React.Dispatch<React.SetStateAction<boolean>> ;
 }
 
 interface MenuProviderprops{
@@ -16,6 +18,7 @@ export const MenuContext = createContext({} as MenuContextProps);
 export const MenuProvider = ({children}: MenuProviderprops) => {
     const [menu, setMenu]= useState (true);
     const [active, setActive] = useState(false);
+    const [overlay, setOverlay] = useState(false);
 
     function mudaDropOpen(active: boolean){
         setActive(active);
@@ -30,7 +33,9 @@ export const MenuProvider = ({children}: MenuProviderprops) => {
            openMenu: menu,
            mudaMenu,
            active,
-           mudaDropOpen
+           mudaDropOpen,
+           overlay,
+           setOverlay,
         }}>
             {children}
         </MenuContext.Provider>
