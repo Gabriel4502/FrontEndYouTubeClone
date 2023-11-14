@@ -1,39 +1,40 @@
-import {createContext, useState, useContext, Dispatch, SetStateAction} from 'react';
+import {createContext, useState, useContext, Dispatch, SetStateAction, useEffect} from 'react';
 
 interface MenuContextProps{
     openMenu: boolean;
-    mudaMenu:(estado: boolean) => void;
-    active?: boolean;
-    mudaDropOpen:(estado: boolean) => void;
+    // mudaMenu:(estado: boolean) => void;
+    dropDown: boolean;
+    // mudaDropOpen:(estado: boolean) => void;
     overlay: boolean;
+    setMenu: React.Dispatch<React.SetStateAction<boolean>>;
     setOverlay: React.Dispatch<React.SetStateAction<boolean>> ;
+    setDropDown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface MenuProviderprops{
     children: React.ReactNode
+    
 }
 
 export const MenuContext = createContext({} as MenuContextProps);
 
+
+
 export const MenuProvider = ({children}: MenuProviderprops) => {
     const [menu, setMenu]= useState (true);
-    const [active, setActive] = useState(false);
+    const [dropDown, setDropDown] = useState(false);
     const [overlay, setOverlay] = useState(false);
 
-    function mudaDropOpen(active: boolean){
-        setActive(active);
-    }
 
-    function mudaMenu(Menuu: boolean){
-        setMenu(Menuu);
-    }
 
     return (
         <MenuContext.Provider value= {{
            openMenu: menu,
-           mudaMenu,
-           active,
-           mudaDropOpen,
+        //    mudaMenu,
+           dropDown,
+           setMenu,
+        //    mudaDropOpen,
+           setDropDown,
            overlay,
            setOverlay,
         }}>
@@ -42,7 +43,7 @@ export const MenuProvider = ({children}: MenuProviderprops) => {
     )
 };
 
-export function useMenu(){
-    const context = useContext(MenuContext);
-    return context;
-}
+// export function useMenu(){
+//     const context = useContext(MenuContext);
+//     return context;
+// }

@@ -35,8 +35,8 @@ export const UserStorage = ({children}: any) =>{
 
 
     const logOut = () =>{
-        localStorage.removeItem('token');
         setLogin(false);
+        localStorage.removeItem('token');
         setUser({});
     }
 
@@ -65,15 +65,15 @@ export const UserStorage = ({children}: any) =>{
         //     }
         // })
 
-        api.post('/user/sign-up',{ name,email, password}).catch((error)=>{
+        api.post('/user/sign-up',{ name,email, password}).then((response)=>{
             // if (error=== 1062){
 
             //     alert("Email já cadastrado")
             // } else
-             if(error){
-                alert("Não foi possível realizar o cadastro")
-            }else if(error=== false)
-            alert("Email cadastrado com sucesso!")
+             if(response.status == 200){
+                alert("Conta criada com sucesso, você já pode efetuar o seu login!")
+            }else
+            alert("Não foi possível criar sua conta")
         })
     }
     

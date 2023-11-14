@@ -1,4 +1,4 @@
-import {HtmlHTMLAttributes, useContext} from "react"
+import {HtmlHTMLAttributes, useContext, useEffect} from "react"
 import { UserContext } from "../../contexts/userContext"
 import { ButtonIcon } from "../menu/styles"
 import { DropDownItem, DropDownMenu, Inicial, InicialContainer, MenuUserContent, Separador, SetaMenu } from "../DropDownMenu/styles"
@@ -12,12 +12,12 @@ import { MenuContext } from "../../contexts/context"
 function DropMenu(){
 
     const {logOut, user} = useContext(UserContext);
-    const {active, mudaDropOpen} = useContext(MenuContext);
+    const { setDropDown} = useContext(MenuContext);
     const itemsMenuDrop = [
         {nome:'Seu canal', link:'', açao: ()=>{}, icone: User},
         {nome:'YouTube Studio', link:'', açao: ()=>{}, icone:Studio},
         {nome:'Alterar conta', link:'', açao: ()=>{}, elemento: <SetaMenu alt="" src={seta}/>, icone:ChangeAcc},
-        {nome:'Sair', link:'', açao: ()=>{logOut(); mudaDropOpen(!active) }, linha:<Separador></Separador>, icone:User},
+        {nome:'Sair', link:'', açao: ()=>{logOut();setDropDown(false) }, linha:<Separador></Separador>, icone:User},
         {nome:'Compras e assinaturas', link:'', açao: ()=>{}, icone:User},
         {nome:'Seus dados no Youtube', link:'', açao: ()=>{}, linha:<Separador></Separador>, icone:User},
         {nome:'Aparência: tema do dispositivo', link:'', açao: ()=>{}, elemento: <SetaMenu alt="" src={seta}/>, icone:User},
@@ -32,10 +32,12 @@ function DropMenu(){
     ]
 
 
+  
+
     return(
 
-       <DropDownMenu active={active? true: false}>
-
+       <DropDownMenu>
+            
             <MenuUserContent>
 
                 <InicialContainer>

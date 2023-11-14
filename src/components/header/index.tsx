@@ -21,22 +21,24 @@ import Pontos from '../../assets/dots.png'
 import Back from '../.././assets/backArrow.png'
 import video from '../../assets/yourVideos.png'
 import Broadcast from '../../assets/broadcast.png'
-import {MenuContext, useMenu } from "../../contexts/context";
+import {MenuContext } from "../../contexts/context";
 import {useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from '../../contexts/userContext';
 import { LoginButton } from '../menu/styles';
 import DropMenu from '../DropDownMenu';
+import { VideoContext } from '../../contexts/videoContext';
 
 function Header(){
     const {login, user} = useContext(UserContext);
-    const {active, mudaDropOpen} = useContext(MenuContext);
-    let {openMenu, mudaMenu} = useMenu();
+    const {Search, setSearch} = useContext(VideoContext);
+    const {dropDown, setDropDown, setMenu, openMenu} = useContext(MenuContext);
     const [srcBar, setSrcBar] = useState(false);
     const [createVid, setCreateVid] = useState(false);
     // const usuario: string = user.nome;
     let location = useLocation();
     const navigate = useNavigate();
     const [width, setWidth] = useState(window.innerWidth);
+    const [inputText, setInputText] = useState(String);
     
     useEffect(()=>{
         const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -44,6 +46,10 @@ function Header(){
         // window.removeEventListener("Resize", handleResizeWindow);
     });
 
+
+    useEffect(()=>{
+        if(!login) setCreateVid(false)
+    },[login]);
     // if (location.pathname === "/login" || location.pathname==='/sign-up/emailRegister' || location.pathname === "/sign-up/nameSurname" || location.pathname === "/login2"){
     //     return <></>
     // }
@@ -68,7 +74,7 @@ function Header(){
                             <SearchContainer  >
         
                                 <SearchInputContainer>
-                                    <SearchInput placeholder="Pesquisar" />
+                                    <SearchInput placeholder="Pesquisar"  />
                                 </SearchInputContainer>
         
                                 <SearchButton srcBar={srcBar} >
@@ -84,7 +90,7 @@ function Header(){
                         <Container>
                             
                             <LogoContainer id='ytMenu' >
-                                <ButtonContainer margin='0 10px 0 0' onClick={() => {mudaMenu(!openMenu)} } >
+                                <ButtonContainer margin='0 10px 0 0' onClick={() => {setMenu(!openMenu)} } >
                                     <ButtonIcon  alt ="" src={HamburguerIcon} />
                                 </ButtonContainer>
                                 <img style={{cursor: 'pointer', width: '100px'}} 
@@ -100,10 +106,10 @@ function Header(){
         
         
                             <SearchInputContainer>
-                                <SearchInput placeholder="Pesquisar" />
+                                <SearchInput placeholder="Pesquisar" onChange={e=>{setInputText(e.target.value)}} />
                             </SearchInputContainer>
         
-                            <SearchButton>
+                            <SearchButton onClick={()=>setSearch(inputText)} >
                                 <ButtonIcon title='Pesquisar' alt="" src={SearchIcon} />
                             </SearchButton>
         
@@ -136,7 +142,7 @@ function Header(){
                                 </>:"" }
                                 
         
-                                <ButtonContainer id="ativaMenu" onClick={()=>{mudaDropOpen(!active)}} >
+                                <ButtonContainer id="ativaMenu" onClick={()=>{setDropDown(!dropDown)}} >
                                     {(user?.nome?.charAt( 0 ).toUpperCase()) || "?"}
                                 </ButtonContainer>
                             </div>

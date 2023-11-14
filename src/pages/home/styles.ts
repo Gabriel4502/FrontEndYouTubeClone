@@ -37,6 +37,7 @@ export const HomeContent = styled.div<{openMenu:boolean}>`
 export const VideoContainer = styled.div<{openMenu:boolean}>`
     width: 100%;
     max-height: 1818px;
+    min-height: 760px;
     padding:20px 0px;
     box-sizing:border-box;
     justify-content:center;

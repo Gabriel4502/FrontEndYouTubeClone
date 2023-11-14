@@ -138,30 +138,40 @@ const buttonLeft= document.getElementById('slideLeft');
 
 
 function Home(){
-    const {openMenu} = useContext(MenuContext);
-    const {AllVideos, videos} = useContext(VideoContext);
+    const {openMenu, dropDown, setDropDown} = useContext(MenuContext);
+    const {AllVideos, videos, Search, SearchVideo} = useContext(VideoContext);
     const [LeftEndScroll, setLeftEndScroll] = useState(0);
+    const [videoArray, setVideoArray] = useState<Videos[]>([]);
     // const [videos, setVideos] = useState<Videos[]>([]);
     const API_KEY = 'AIzaSyCBwUkDtEgLXfhT8OZF_kLDkZzhZs-s_H8';
     // const url = `https//youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`
-   
+    function carregar(){
+        
+        return ()=>setVideoArray(videos);
+        //  setVideos(video);
+     }
     useEffect(()=>{
         const handleScrollState = ()=> setLeftEndScroll(document.querySelector('#tag')?.scrollLeft as number);
         document.querySelector("#tag")?.addEventListener("scroll", handleScrollState);
         // setVideos(video)
+        carregar();
+        {Search.length===0? AllVideos(): SearchVideo()}
        
-    });
-     useEffect(()=>{
-        // AllVideos();
-         console.log(videos)
-          
-        
-     },[videos]);
+    },[Search]);
 
-    // function carregar(){
-    //     AllVideos();
-    //     setVideos(video);
-    // }
+    useEffect(()=>{
+        setDropDown(false);
+    },[])
+
+
+    // useEffect(()=>{
+    //     setVideos(AllVideos)
+    //     // videos.splice(videos.length, 0,  )
+    //     // 
+        
+    // },[videos]);
+
+    
 
 
     //  async function load(){
@@ -184,7 +194,7 @@ function Home(){
         <Menu/>
         
             <HomeContent  openMenu={openMenu} >
-                <DropMenu />
+                {dropDown?<DropMenu /> :undefined}
             
 
                 <TagWrapper >
@@ -196,21 +206,21 @@ function Home(){
                             <TagItem title="Metal" ><a>Metal</a></TagItem>
                             <TagItem title="Thrash Metal" ><a>Thrash Metal</a></TagItem>
                             <TagItem title=" Death Metal" ><a>Death Metal</a></TagItem>
-                            <TagItem><a  >Technical Death Metal</a></TagItem>
-                            <TagItem><a  >Progressive Death Metal</a></TagItem>
-                            <TagItem><a >Neoclassical Metal</a></TagItem>
-                            <TagItem><a  >Power Metal</a></TagItem>
-                            <TagItem><a >Doom Metal</a></TagItem>
-                            <TagItem><a >Shred</a></TagItem>
-                            <TagItem><a >80s</a></TagItem>
-                            <TagItem><a >90s</a></TagItem>
-                            <TagItem><a >Blues</a></TagItem>
-                            <TagItem><a >Fusion</a></TagItem>
-                            <TagItem><a >Jazz</a></TagItem>
-                            <TagItem><a >Fuzz</a></TagItem>
-                            <TagItem><a >Dissonant Death Metal</a></TagItem>
-                            <TagItem><a >MeloDeath</a></TagItem>
-                            <TagItem><a >Modern Thrash Metal</a></TagItem>
+                            <TagItem><a>Technical Death Metal</a></TagItem>
+                            <TagItem><a>Progressive Death Metal</a></TagItem>
+                            <TagItem><a>Neoclassical Metal</a></TagItem>
+                            <TagItem><a>Power Metal</a></TagItem>
+                            <TagItem><a>Doom Metal</a></TagItem>
+                            <TagItem><a>Shred</a></TagItem>
+                            <TagItem><a>80s</a></TagItem>
+                            <TagItem><a>90s</a></TagItem>
+                            <TagItem><a>Blues</a></TagItem>
+                            <TagItem><a>Fusion</a></TagItem>
+                            <TagItem><a>Jazz</a></TagItem>
+                            <TagItem><a>Fuzz</a></TagItem>
+                            <TagItem><a>Dissonant Death Metal</a></TagItem>
+                            <TagItem><a>MeloDeath</a></TagItem>
+                            <TagItem><a>Modern Thrash Metal</a></TagItem>
                     </Tags>
                     {LeftEndScroll >= document.querySelector("#tag")!?.scrollWidth - document.querySelector("#tag")!?.clientWidth-40 ? '' :
                             <Right title="Próximo" className="right" onClick={()=>rightScroll('tag')}>
@@ -221,7 +231,17 @@ function Home(){
             
 
             <VideoContainer openMenu={openMenu}>
-           
+                
+            { videos.map((video: Videos) =>(
+                    <VideoComponent 
+                    name={video.name || ''}
+                    title={video.title || ''} 
+                     description={video.description || ''}
+                     imageUrl={video.imageUrl || ''}
+                     tempo={video.data_Upload || '' }
+                     views={video.views || 0}
+                     />
+                ))} 
             </VideoContainer>
             </HomeContent>
           

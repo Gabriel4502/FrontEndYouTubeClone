@@ -2,57 +2,85 @@ import api from "../api";
 import {createContext, useContext, useEffect, useState} from 'react';
 import { UserContext } from "./userContext";
 
+
 export const VideoContext = createContext({}as any);
 
- interface Video{
-  name: string;
-  imageUrl: string;
-  title: string;
-  description:string;
-  views: number;
-  tempo: string;
-}
+ 
+  interface Video{
+    object:{
 
-export const VideoStorage =({children}: any)=>{
-    const {token} = useContext(UserContext);
-    const [videos, setVideos] = useState<Video[]>([]);
+      name: string;
+      imageUrl: string;
+      title: string;
+      description:string;
+      views: number;
+      tempo: string;
+    }
+  }
 
-    useEffect(()=>{
-      AllVideos();
-  },[token]);
-     
+  export const VideoStorage =({children}: any)=>{
+      const [Search, setSearch] = useState('');
+      const {token} = useContext(UserContext);
+      const [videos, setVideos] = useState<Video[]>([]);
 
-    const AdicionarVideo = (title: string, description: string, user_id: string, path: string, arquivo: File)=>{
-        api.post('/videos/create-video', {title, description, user_id, path}, {headers:{Authorization: token}}).then((response) => {
-            if (response.status === 200) {
-              alert("Video enviado com sucesso");
-            } else {
+
+      const SearchVideo=()=>{
+       api.get(`http://localhost:4000/videos/search?search=${Search}`).then(response=>{
+          setVideos(response.data.videos)
+          console.log(response.data)
+          
+      }).catch(error =>{
+        alert("Falha ao pesquisar video")
+        console.log(error)
+        setSearch('');
+      })
+      }
+
+      
+
+      const AdicionarVideo = (title: string, description: string, user_id: string, imageUrl: string)=>{
+          api.post('/videos/create-video', {title, description, user_id, imageUrl}, {headers:{Authorization: token}}).then((response) => {
+              if (response.status === 200) {
+                alert("Video enviado com sucesso");
+              } else {
+                alert("Falha ao enviar vídeo");
+              }
+            })
+            .catch((error) => {
               alert("Falha ao enviar vídeo");
+            });
+      }
+
+      function AllVideos() {
+        return api.get('/videos/get-all-videos')
+          .then(response => {
+            if (response.status === 200) {
+              setVideos(response.data.results)
+              console.log(videos)
+              // console.log(response.data.results)
+              
+            } else {
+              throw new Error(`Request failed with status: ${response.status}`);
             }
           })
-          .catch((error) => {
-            alert("Falha ao enviar vídeo");
+          .catch(error => {
+            console.error(error);
           });
-    }
+      }
+      
+    
 
-    const AllVideos=()=>{
-      api.get('/videos/get-all-videos').then(response => {
-        setVideos(response.data)
-         return console.log(response.data);
-        }).catch(error => {
-          console.error(error);
-        });
-}
+      return (
 
-
-    return (
-
-        <VideoContext.Provider value={{
-            AdicionarVideo,
-            AllVideos,
-            videos
-        }}>
-            {children}
-        </VideoContext.Provider>
-    )
+          <VideoContext.Provider value={{
+              AdicionarVideo,
+              AllVideos,
+              videos,
+              SearchVideo,
+              Search,
+              setSearch
+          }}>
+              {children}
+          </VideoContext.Provider>
+      )
 }

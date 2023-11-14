@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 
-export const DropDownMenu = styled.div <{active:boolean}> `
+export const DropDownMenu = styled.div `
     width: 300px;
     z-index: 15;
     border-radius: 10px 10px 10px 10px;
@@ -33,7 +33,6 @@ export const DropDownMenu = styled.div <{active:boolean}> `
     }
 
     flex-direction: column;
-    display: ${({active}) => active? 'block': 'none' };
     position: fixed;
     box-sizing: border-box;
     top: 5%;

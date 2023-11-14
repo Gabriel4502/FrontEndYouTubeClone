@@ -51,7 +51,7 @@ let listaItemsOpen: React.ReactNode;
 let listaItemsClosed: React.ReactNode;
 
 export function Menu(){
-    const {openMenu, mudaMenu} = useContext(MenuContext);
+    const {openMenu} = useContext(MenuContext);
     const {login} = useContext(UserContext);
     const [menuExtraContent,setMenuExtraContent] = useState(false);
     const [subscribersContent,setSubscribersContent] = useState(false);
@@ -126,7 +126,7 @@ export function Menu(){
                     } ];
                     
                     if(login===true){
-                        itemsOpen.splice(23,0, {nome:'YouTube Studio', elemento2:' ', link:'/studio', acao:()=>{navigate('/upload/videosUpload')}, icone: Studio},);
+                        itemsOpen.splice(23,0, {nome:'YouTube Studio', elemento2:' ', link:'/studio', acao:()=>{navigate('/channel/Content')}, icone: Studio},);
                         itemsOpen.splice(21,1);
                     } 
                     if(menuExtraContent){
