@@ -30,10 +30,8 @@ export const MenuProvider = ({children}: MenuProviderprops) => {
     return (
         <MenuContext.Provider value= {{
            openMenu: menu,
-        //    mudaMenu,
            dropDown,
            setMenu,
-        //    mudaDropOpen,
            setDropDown,
            overlay,
            setOverlay,

@@ -52,6 +52,7 @@ export const MenuItem = styled.div <{openMenu: boolean}>`
   border-radius: 10px;
   cursor: pointer;
   padding: 0px 12px;
+  transition: 0.3s;
   box-sizing: border-box;
   display: flex;
   flex-direction: ${({openMenu}) => openMenu? 'row': 'column'};

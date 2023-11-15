@@ -21,7 +21,10 @@ function Login (){
                         Prosseguir no YouTube
                     </div>
                     <div style={{width:'368px',padding:'8px 0 0', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                    <CustomInput id='email' placeholder='E-mail ou telefone' type='email' onChange={(e) => setEmail(e.target.value)} ></CustomInput>
+                    <CustomInput id='email' placeholder='E-mail ou telefone' type='email' 
+                        onChange={(e) => setEmail(e.target.value)}
+                        onKeyDown={e=>{if(e.key==='Enter') email? (navigate(`/login2`)) : alert("Insira um e-mail válido")} } 
+                        ></CustomInput>
                     <div style={{width:'368px',display:'flex', justifyContent:'flex-start'}}>
                         <a style={{cursor:'pointer', color:'rgb(26 115 232)', fontWeight:'600'}}>
                             Esqueceu seu E-mail?

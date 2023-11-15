@@ -52,7 +52,9 @@ function Login2 (){
                         Prosseguir no YouTube
                     </div>
                     <div style={{width:'368px',padding:'8px 0 0', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                    <CustomInput id='password' placeholder='Digite sua senha' type='password' onChange={(e) => setSenha(e.target.value)} ></CustomInput>
+                    <CustomInput id='password' placeholder='Digite sua senha' type='password' 
+                        onChange={(e) => setSenha(e.target.value)}  
+                        onKeyDown={e=>{if(e.key==='Enter')handleLogin(email, senha)} }  ></CustomInput>
                     <div style={{width:'368px',display:'flex', justifyContent:'flex-start'}}>
                         <a style={{cursor:'pointer', color:'rgb(26 115 232)', fontWeight:'600'}}>
                             Mostrar senha

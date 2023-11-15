@@ -22,8 +22,22 @@ function NameSurname(){
                         Insira seu nome
                     </div>
                     <div style={{width:'368px',padding:'8px 0 0', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                    <CustomInput style={{marginBottom:'20px'}} id='name' placeholder='Nome' type='string' onChange={(e) => setName(e.target.value+` ${surname}`)} ></CustomInput>
-                    <CustomInput id='name' placeholder='Sobreome(Opicional)' type='string' onChange={(e) => setSurname(e.target.value)} ></CustomInput>
+                    <CustomInput style={{marginBottom:'20px'}} id='name' placeholder='Nome' type='string'
+                        onKeyDown={e=>{if(e.key==='Enter'){
+                                            
+                            name.length===0? alert(`Insira seu nome`):
+                            navigate('/sign-up/emailRegister')
+                        
+                    } }}
+                        onChange={(e) => setName(e.target.value+` ${surname}`)} ></CustomInput>
+                    <CustomInput id='name' placeholder='Sobreome(Opicional)' type='string' onChange={(e) => setName(name+e.target.value)}
+                         onKeyDown={e=>{if(e.key==='Enter'){
+                                            
+                            name.length===0? alert(`Insira seu nome`):
+                            navigate('/sign-up/emailRegister')
+                        
+                    } }}
+                    ></CustomInput>
                     <div style={{width:'368px',display:'flex', justifyContent:'flex-start'}}>
                         <a style={{cursor:'pointer', color:'rgb(26 115 232)', fontWeight:'600'}}>
                            
@@ -34,8 +48,14 @@ function NameSurname(){
                         <a style={{cursor:'pointer', fontWeight:'600', color:'rgb(26 115 232)'}}>Saiba mais</a>
                     </div>
                     <div style={{width: '400px', display:'flex', margin:'0 0 50px 0', justifyContent:'flex-end'}} >
-                        <button style={{width:'102.398px', height:'38px', fontSize:'14px', borderRadius:'5px', 
-                                        backgroundColor:'rgb(26 115 232)', color:'white', border:'none', cursor:'pointer'}} 
+                        <button tabIndex={0} style={{width:'102.398px', height:'38px', fontSize:'14px', borderRadius:'5px', 
+                                        backgroundColor:'rgb(26 115 232)', color:'white', border:'none', cursor:'pointer'}}
+                                        onKeyDown={e=>{if(e.key==='Enter'){
+                                            
+                                            name.length===0? alert(`Insira seu nome`):
+                                            navigate('/sign-up/emailRegister')
+                                        
+                                    } }}
                                         onClick={name.length===0? ()=>alert(`Insira seu nome`): ()=>navigate('/sign-up/emailRegister') }>Próxima
                         </button>
                     </div>

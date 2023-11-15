@@ -9,7 +9,6 @@ import {
     SearchInput,
     SearchButton,
     HeaderButton,} from "./styles";
-import { DropDownMenu } from '../DropDownMenu/styles';
 import Perfil from '../../assets/perfil-de-usuario.png';    
 import HamburguerIcon from '../../assets/hamburger.png';
 import Logo from '../../assets/YouTube-Logo.png';
@@ -22,20 +21,17 @@ import Back from '../.././assets/backArrow.png'
 import video from '../../assets/yourVideos.png'
 import Broadcast from '../../assets/broadcast.png'
 import {MenuContext } from "../../contexts/context";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from '../../contexts/userContext';
 import { LoginButton } from '../menu/styles';
-import DropMenu from '../DropDownMenu';
 import { VideoContext } from '../../contexts/videoContext';
 
 function Header(){
     const {login, user} = useContext(UserContext);
-    const {Search, setSearch} = useContext(VideoContext);
+    const { setSearch} = useContext(VideoContext);
     const {dropDown, setDropDown, setMenu, openMenu} = useContext(MenuContext);
     const [srcBar, setSrcBar] = useState(false);
     const [createVid, setCreateVid] = useState(false);
-    // const usuario: string = user.nome;
-    let location = useLocation();
     const navigate = useNavigate();
     const [width, setWidth] = useState(window.innerWidth);
     const [inputText, setInputText] = useState(String);
@@ -74,7 +70,7 @@ function Header(){
                             <SearchContainer  >
         
                                 <SearchInputContainer>
-                                    <SearchInput placeholder="Pesquisar"  />
+                                    <SearchInput placeholder="Pesquisar" onKeyDown={e=>{if(e.key==='enter') setInputText(inputText)}}  />
                                 </SearchInputContainer>
         
                                 <SearchButton srcBar={srcBar} >
@@ -89,13 +85,16 @@ function Header(){
         
                         <Container>
                             
-                            <LogoContainer id='ytMenu' >
+                            <LogoContainer  id='ytMenu' >
                                 <ButtonContainer margin='0 10px 0 0' onClick={() => {setMenu(!openMenu)} } >
                                     <ButtonIcon  alt ="" src={HamburguerIcon} />
                                 </ButtonContainer>
                                 <img style={{cursor: 'pointer', width: '100px'}} 
-                                alt ='Página inicial do YouTube'
-                                src={Logo}
+                                    alt ='Página inicial do YouTube'
+                                    title='Página inicial do YouTUbe'
+                                    src={Logo}
+                                    onClick={()=>navigate('/')}
+
                                 />
                             </LogoContainer>
         
@@ -106,7 +105,7 @@ function Header(){
         
         
                             <SearchInputContainer>
-                                <SearchInput placeholder="Pesquisar" onChange={e=>{setInputText(e.target.value)}} />
+                                <SearchInput placeholder="Pesquisar" onChange={e=>{setInputText(e.target.value)}} onKeyDown={e=>{if(e.key==='Enter') setSearch(inputText)}}  />
                             </SearchInputContainer>
         
                             <SearchButton onClick={()=>setSearch(inputText)} >

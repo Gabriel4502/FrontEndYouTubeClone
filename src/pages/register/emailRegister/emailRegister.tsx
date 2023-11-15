@@ -22,8 +22,25 @@ function EmailRegister(){
                      Digite o endereço de e-mail que você quer usar na sua Conta do Google
                     </div>
                     <div style={{width:'368px',padding:'8px 0 0', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                    <CustomInput style={{marginBottom:'20px'}} id='e-mail' placeholder='Endereço de e-mail' type='e-mail' onChange={(e) => setEmail(e.target.value)} ></CustomInput>
-                    <CustomInput style={{marginBottom:'20px'}} id='password' placeholder='Digite sua senha' type='password' onChange={(e) => setPassword(e.target.value)} ></CustomInput>
+                    <CustomInput style={{marginBottom:'20px'}} id='e-mail' placeholder='Endereço de e-mail' type='e-mail' 
+                        onChange={(e) => setEmail(e.target.value)}
+                        onKeyDown={e=>{if(e.key==='Enter'){
+                            e.preventDefault();
+                            register(name, email, password)
+                            navigate('/login')
+                        
+                    } }}
+                        ></CustomInput>
+                    <CustomInput style={{marginBottom:'20px'}} id='password' placeholder='Digite sua senha' type='password' 
+                        onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={e=>{if(e.key==='Enter'){
+                            e.preventDefault();
+                            register(name, email, password)
+                            navigate('/login')
+                        
+                        } }}
+                    
+                    ></CustomInput>
                     
                     <div style={{width:'368px',display:'flex', justifyContent:'flex-start'}}>
                         <a style={{cursor:'pointer', color:'rgb(26 115 232)', fontWeight:'600'}}>
@@ -32,7 +49,7 @@ function EmailRegister(){
                         </div>
                     </div>
                     <div style={{width: '400px', display:'flex', margin:'0 0 50px 0', justifyContent:'flex-end'}} >
-                        <button style={{width:'102.398px', height:'38px', fontSize:'14px', borderRadius:'5px', 
+                        <button tabIndex={0} style={{width:'102.398px', height:'38px', fontSize:'14px', borderRadius:'5px', 
                                         backgroundColor:'rgb(26 115 232)', color:'white', border:'none', cursor:'pointer'}}
                                         onClick={email.length===0? ()=>alert(`Insira seu e-mail`):
                                         ()=>{
