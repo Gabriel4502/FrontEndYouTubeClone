@@ -51,7 +51,7 @@ export interface Video{
 function VideoComponent(videoProp:Video){
 
     const {user} = useContext(UserContext);
-    const imgChannel:string = user.nome; 
+    // const imgChannel:string = user.nome; 
     const tempoPassado: string = calculateTimeDifference(videoProp.tempo)
     return(
         <Container>

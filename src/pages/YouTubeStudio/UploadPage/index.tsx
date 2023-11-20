@@ -46,7 +46,7 @@ function UploadPage(){
                                 <FileInput placeholder="Insira a URL da thumbnail" name="thumbnail" type="text" onChange={e=>{setThumb(e.target.value)}} />
                                
                         </p>
-                        <UploadButton name="upload" type="submit" onClick={()=>AdicionarVideo(title, description, user.id,thumb )} >Enviar video</UploadButton>
+                        <UploadButton name="upload" type="submit" onClick={()=>AdicionarVideo(title, description, user?.id,thumb )} >Enviar video</UploadButton>
                         
                         </FormContainer>
                 </BottomContainer>

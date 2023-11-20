@@ -42,11 +42,11 @@ function MenuStudio(){
                 <MenuStudioContainer openMenu={openMenu}>
                     <MenuStudioUserContent openMenu={openMenu} >
                         <MenuUserId openMenu={openMenu}>
-                            <span> {user.nome?.charAt(0).toUpperCase() || '?'} </span>
+                            <span> {user?.nome?.charAt(0).toUpperCase() || '?'} </span>
                         </MenuUserId>
                         {openMenu? <>
                             <span>Seu canal</span>
-                            <span>{user.nome || '?'}</span>
+                            <span>{user?.nome || '?'}</span>
                         </>:'' }
                     </MenuStudioUserContent>
                     

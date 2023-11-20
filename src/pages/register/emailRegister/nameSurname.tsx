@@ -29,10 +29,10 @@ function NameSurname(){
                             navigate('/sign-up/emailRegister')
                         
                     } }}
-                        onChange={(e) => setName(e.target.value+` ${surname}`)} ></CustomInput>
-                    <CustomInput id='name' placeholder='Sobreome(Opicional)' type='string' onChange={(e) => setName(name+e.target.value)}
+                        onChange={(e) => setName(e.target.value)} ></CustomInput>
+                    <CustomInput id='name' placeholder='Sobreome(Opicional)' type='string' onChange={(e) => setSurname(e.target.value)}
                          onKeyDown={e=>{if(e.key==='Enter'){
-                                            
+                            setName(name+' '+surname);
                             name.length===0? alert(`Insira seu nome`):
                             navigate('/sign-up/emailRegister')
                         
@@ -56,7 +56,7 @@ function NameSurname(){
                                             navigate('/sign-up/emailRegister')
                                         
                                     } }}
-                                        onClick={name.length===0? ()=>alert(`Insira seu nome`): ()=>navigate('/sign-up/emailRegister') }>Próxima
+                                        onClick={name.length===0? ()=>alert(`Insira seu nome`): ()=>{navigate('/sign-up/emailRegister'); setName(name+' '+surname)} }>Próxima
                         </button>
                     </div>
                 </LoginContainer>

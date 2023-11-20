@@ -42,7 +42,7 @@ function DropMenu(){
 
                 <InicialContainer>
                 <Inicial>
-                    <span>{ user.nome ? user.nome.charAt(0): '?' }</span>
+                    <span>{ user?.nome ? user.nome.charAt(0): '?' }</span>
                 </Inicial>
                 </InicialContainer>
 
@@ -51,7 +51,7 @@ function DropMenu(){
                         {user?.nome || '?'}
                     </span>
                     <span style={{marginBottom:'5px'}}>
-                        {`@${user.nome}-codigo`}
+                        {`@${user?.nome}-codigo`}
                     </span>
                     <a>Gerenciar sua conta do Google</a>
                 </div>

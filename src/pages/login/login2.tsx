@@ -7,7 +7,7 @@ import google from '../../assets/google.png'
 
 function Login2 (){
     const navigate = useNavigate();
-    const {handleLogin, login, Error, ver, setVer, setLogin, token} = useContext(UserContext);
+    const {handleLogin, login, ver, setVer, setLogin, token} = useContext(UserContext);
     const {email} = useContext(UserContext);
     const [senha, setSenha] = useState('');
     const [verifica, setVerifica] = useState(false);

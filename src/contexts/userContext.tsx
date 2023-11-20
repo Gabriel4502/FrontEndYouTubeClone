@@ -1,13 +1,33 @@
-import { createContext, useEffect, useState } from "react";
+import { SetStateAction, createContext, useEffect, useState } from "react";
 import api from "../api";
 
-export const UserContext = createContext({} as any);
+interface UserContextType{
+    login: boolean;
+    user: Usuario | null;
+    handleLogin: (email: string, password: string)=>void;
+    logOut: () => void;
+    email: string;
+    setEmail: React.Dispatch<SetStateAction<string>>;
+    ver:boolean;
+    setVer: React.Dispatch<SetStateAction<boolean>>;
+    token: string;
+    setLogin: React.Dispatch<SetStateAction<boolean>>; 
+    register: (name: string, email: string, password: string) => void;
+    name: string;
+    setName: React.Dispatch<SetStateAction<string>>;
+    password: string;
+    setPassword: React.Dispatch<SetStateAction<string>>;
+    surname: string;
+    setSurname: React.Dispatch<SetStateAction<string>>;
+}
+
 interface Usuario{
     nome: string;
     email: string;
     id: string;
 }
 
+export const UserContext = createContext({} as UserContextType);
 
 export const UserStorage = ({children}: any) =>{
     const [login, setLogin] = useState(false);
@@ -16,7 +36,7 @@ export const UserStorage = ({children}: any) =>{
     const [name,setName] = useState('');
     const [surname,setSurname] = useState('');
     const [password,setPassword] = useState('');
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<Usuario | null>(null);
     const [token, setToken] = useState(localStorage.getItem('token') as string);
 
     const getUser = (token: string) =>{
@@ -25,6 +45,7 @@ export const UserStorage = ({children}: any) =>{
             setLogin(true); 
             console.log(data.user);
         }).catch((error)=>{
+            setLogin(false); 
             console.log('Usuário não autenticado', error)
         })
     }
@@ -37,7 +58,7 @@ export const UserStorage = ({children}: any) =>{
     const logOut = () =>{
         setLogin(false);
         localStorage.removeItem('token');
-        setUser({});
+        setUser(null);
     }
 
     const handleLogin = (email: string, password: string) => {
@@ -74,6 +95,8 @@ export const UserStorage = ({children}: any) =>{
                 alert("Conta criada com sucesso, você já pode efetuar o seu login!")
             }else
             alert("Não foi possível criar sua conta")
+        }).catch((error)=>{
+            console.log('Falha no registro de email', error)
         })
     }
     
