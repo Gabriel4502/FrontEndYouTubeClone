@@ -1,7 +1,7 @@
 import VideoComponent from "../../components/videoComponent";
 import { MenuContext } from "../../contexts/context";
 import { Container, HomeContent, Left, MainContainer, Right, TagItem, TagWrapper, Tags, VideoContainer } from "./styles";
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import necro from '../../assets/videoBanners/necroph.png';
 import death from '../../assets/videoBanners/chuck.png';
 import kreator from '../..//assets/videoBanners/kreator.png';
@@ -15,105 +15,9 @@ import { StyledComponent } from "styled-components";
 import { ButtonIcon } from "../../components/header/styles";
 import axios from "axios";
 import { VideoContext } from "../../contexts/videoContext";
-// const videos =
-//     [
-//         { image: necro,
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
 
-//         {image: death,
-//         title:'Death - Bite the pain',
-//         channel:'Death Metal Channel',
-//         views:'460 tri',
-//         tempo:'28 anos'},
 
-//         {image: davie,
-//         title:'Bass',
-//         channel:'Davie504',
-//         views:'42069 mi',
-//         tempo:'69 anos'},
-
-//         {image: kreator,
-//         title:'Kreator - Absolute Misanthropy',
-//         channel:'Thrash channel',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Bass',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Bass2',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Intankável o bostil',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Motor de movimento perpétuo part1',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-//         {image: '',
-//         title:'Necrophagist - Culinary Hyperversity',
-//         channel:'Tech death',
-//         views:'840 tri',
-//         tempo:'280 anos'},
-// ]
-
-interface Videos{
+interface Videos {
     name: string;
     title: string;
     description: string;
@@ -122,87 +26,65 @@ interface Videos{
     views: number;
 }
 
-const buttonRight= document.getElementById('slideRight');
-const buttonLeft= document.getElementById('slideLeft');
+const buttonRight = document.getElementById('slideRight');
+const buttonLeft = document.getElementById('slideLeft');
 
 
-      function leftScroll(element: string ) {
-        const left = document.getElementById (element);
-        left!.scrollBy(-200, 0);
-      }
-      function rightScroll(element:string) {
-        const right = document.getElementById(element);
-         right!.scrollBy(200, 0);
-      }
+function leftScroll(element: string) {
+    const left = document.getElementById(element);
+    left!.scrollBy(-200, 0);
+}
+function rightScroll(element: string) {
+    const right = document.getElementById(element);
+    right!.scrollBy(200, 0);
+}
 
 
 
-function Home(){
-    const {openMenu, dropDown, setDropDown} = useContext(MenuContext);
-    const {AllVideos, videos, Search, SearchVideo} = useContext(VideoContext);
+function Home() {
+    const { openMenu, dropDown, setDropDown } = useContext(MenuContext);
+    const { AllVideos, videos, Search, SearchVideo } = useContext(VideoContext);
     const [LeftEndScroll, setLeftEndScroll] = useState(0);
     const [videoArray, setVideoArray] = useState<Videos[]>([]);
     // const [videos, setVideos] = useState<Videos[]>([]);
-    const API_KEY = 'AIzaSyCBwUkDtEgLXfhT8OZF_kLDkZzhZs-s_H8';
     // const url = `https//youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`
-    function carregar(){
-        
-        return ()=>setVideoArray(videos);
-        //  setVideos(video);
-     }
-    useEffect(()=>{
-        const handleScrollState = ()=> setLeftEndScroll(document.querySelector('#tag')?.scrollLeft as number);
+    function carregar() {
+
+        return () => setVideoArray(videos);
+    }
+    useEffect(() => {
+        const handleScrollState = () => setLeftEndScroll(document.querySelector('#tag')?.scrollLeft as number);
         document.querySelector("#tag")?.addEventListener("scroll", handleScrollState);
-        // setVideos(video)
+
         carregar();
-        {Search.length===0? AllVideos(): SearchVideo()}
-       
-    },[Search]);
+        { Search.length === 0 ? AllVideos() : SearchVideo() }
 
-    useEffect(()=>{
+    }, [Search]);
+
+    useEffect(() => {
         setDropDown(false);
-    },[])
+    }, [])
 
 
-    // useEffect(()=>{
-    //     setVideos(AllVideos)
-    //     // videos.splice(videos.length, 0,  )
-    //     // 
-        
-    // },[videos]);
 
-    
-
-
-    //  async function load(){
-        
-        
-    //      try{
-    //          const resposta = await axios.get('/videos/get-all-videos')
-    //          setVideos(resposta.data)
-    //      }catch(erro){
-    //          console.log(erro)
-    //      }
-    // }
-
-    return(
+    return (
 
         <MainContainer openMenu={openMenu} >
             <Header />
-            
-        <Container openMenu={openMenu}>
-        <Menu/>
-        
-            <HomeContent  openMenu={openMenu} >
-                {dropDown?<DropMenu /> :undefined}
-            
 
-                <TagWrapper >
-                    { LeftEndScroll>0? <Left title="Anterior" className="left" onClick={()=>leftScroll('tag')}><ButtonIcon alt="" src={LefttArrow} /></Left>: ''}
+            <Container openMenu={openMenu}>
+                <Menu />
 
-                    <Tags id="tag" openMenu={openMenu}>
-                        
-                        
+                <HomeContent openMenu={openMenu} >
+                    {dropDown ? <DropMenu /> : undefined}
+
+
+                    <TagWrapper >
+                        {LeftEndScroll > 0 ? <Left title="Anterior" className="left" onClick={() => leftScroll('tag')}><ButtonIcon alt="" src={LefttArrow} /></Left> : ''}
+
+                        <Tags id="tag" openMenu={openMenu}>
+
+
                             <TagItem title="Metal" ><a>Metal</a></TagItem>
                             <TagItem title="Thrash Metal" ><a>Thrash Metal</a></TagItem>
                             <TagItem title=" Death Metal" ><a>Death Metal</a></TagItem>
@@ -221,31 +103,31 @@ function Home(){
                             <TagItem><a>Dissonant Death Metal</a></TagItem>
                             <TagItem><a>MeloDeath</a></TagItem>
                             <TagItem><a>Modern Thrash Metal</a></TagItem>
-                    </Tags>
-                    {LeftEndScroll >= document.querySelector("#tag")!?.scrollWidth - document.querySelector("#tag")!?.clientWidth-40 ? '' :
-                            <Right title="Próximo" className="right" onClick={()=>rightScroll('tag')}>
+                        </Tags>
+                        {LeftEndScroll >= document.querySelector("#tag")!?.scrollWidth - document.querySelector("#tag")!?.clientWidth - 40 ? '' :
+                            <Right title="Próximo" className="right" onClick={() => rightScroll('tag')}>
                                 <ButtonIcon alt="" src={RightArrow} />
-                            </Right> }
-                </TagWrapper>
-                
-            
+                            </Right>}
+                    </TagWrapper>
 
-            <VideoContainer openMenu={openMenu}>
-                
-            { videos.map((video: Videos) =>(
-                    <VideoComponent 
-                    name={video.name || ''}
-                    title={video.title || ''} 
-                     description={video.description || ''}
-                     imageUrl={video.imageUrl || ''}
-                     tempo={video.data_Upload || '' }
-                     views={video.views || 0}
-                     />
-                ))} 
-            </VideoContainer>
-            </HomeContent>
-          
-        </Container>
+
+
+                    <VideoContainer openMenu={openMenu}>
+
+                        {videos.map((video: Videos) => (
+                            <VideoComponent
+                                name={video.name || ''}
+                                title={video.title || ''}
+                                description={video.description || ''}
+                                imageUrl={video.imageUrl || ''}
+                                tempo={video.data_Upload || ''}
+                                views={video.views || 0}
+                            />
+                        ))}
+                    </VideoContainer>
+                </HomeContent>
+
+            </Container>
         </MainContainer>
 
     )

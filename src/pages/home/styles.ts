@@ -25,6 +25,7 @@ export const HomeContent = styled.div<{openMenu:boolean}>`
     @media (max-width: 409px){
         width: 82%;
     }
+    height: max-content;
     display: flex;
     justify-content: center;
     margin-left:20px;
@@ -36,7 +37,6 @@ export const HomeContent = styled.div<{openMenu:boolean}>`
 
 export const VideoContainer = styled.div<{openMenu:boolean}>`
     width: 100%;
-    max-height: 1818px;
     min-height: 760px;
     padding:20px 0px;
     box-sizing:border-box;
@@ -62,7 +62,7 @@ export const Tags = styled.div <{openMenu:boolean}>`
    
     transition: 0.3s;
     width: 100%;
-    height: 56px;
+    height: 66px;
     background-color: white;
     display: flex;
     align-items: center;
@@ -140,7 +140,17 @@ export const TagWrapper = styled.div <{}> `
     display: flex;
     flex-wrap: nowrap;
     position: sticky;
+    background-color: white;
     z-index: 14!important;
-    top: 5.7%;
+    top: 5.8vh;
+
+    @media (max-height: 800px){
+         top: 5.8vh;
+
+    }
+    @media (min-height: 946px){
+         top: 2.8vh;
+
+    }
 
 `

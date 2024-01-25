@@ -17,7 +17,7 @@ box-sizing: border-box;
 padding: ${({openMenu}) => openMenu? ' 10px 10px 10px 10px': ' 10px 25px 10px 0px'  } ;
 display: flex;
 position: sticky;
-top: 55px;
+top: 40px;
 align-items: center;
 flex-direction: column;
 overflow-y: auto;

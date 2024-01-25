@@ -146,8 +146,10 @@ export function Menu(){
         const handleResizeWindow= () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResizeWindow);
         // window.removeEventListener("Resize", handleResizeWindow);
-        
-    });
+        return () => {
+            window.removeEventListener("resize", handleResizeWindow);
+        };
+    }, []);
 
         return(
 
